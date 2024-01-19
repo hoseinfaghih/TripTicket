@@ -1,0 +1,43 @@
+{% extends "auth/layout.html" %}
+
+{% load static %}
+
+{% block title %}
+    Sign In | Network
+{% endblock %}
+
+{% block script %}
+    <script type"text/javascript" src="{% static 'js/signin.js' %}"></script>
+{% endblock %}
+
+{% block body %}
+    <div class="user-box">
+        <div class="text-center">
+            <img src="{% static 'img/icon_logo.png' %}" height="35em" class="mb-3">
+            <h3>Log in to Flight</h3>
+            <br>
+        </div>
+
+        <form action="{% url 'login' %}" method="post" id="signin-form" class="mb-4">
+            {% csrf_token %}
+            <div class="mb-3">
+                <input class="form-control usrnm" type="text" name="username" placeholder="Username" autocomplete="off" autofocus>
+            </div>
+            <div class="mb-3">
+                <input class="form-control pswd" type="password" name="password" placeholder="Password" autocomplete="off">
+                <span class="star"><small>{{ message }}</small></span>
+            </div>
+            <div class="d-grid gap-2">
+                <input class="btn btn-danger" type="submit" value="Log in" style="margin-top: 10px;" disabled>
+            </div>
+        </form>
+
+        <div class="text-center">
+            Don't have an account?&nbsp;&nbsp;<a href="{% url 'register' %}">Sign Up</a>
+        </div>
+    </div>
+{% endblock %}
+
+
+
+
