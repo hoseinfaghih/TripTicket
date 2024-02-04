@@ -1,5 +1,6 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import login,logout,authenticate
+from .forms import CustomRegistrationForm
 # Create your views here.
 
 def index (request):
@@ -7,7 +8,9 @@ def index (request):
 
 
 def register_view(request):
-    return render(request,'auth/register.html')    
+    form = CustomRegistrationForm()
+    context = {'form':form}
+    return render(request,'auth/register.html',context=context)    
     
     
 

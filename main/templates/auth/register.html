@@ -17,36 +17,64 @@
         <h3>Sign up for Flight</h3> 
     </div>
 
-    <form action="{% url 'register' %}" method="post" id="signin-form" class="mb-5" enctype="multipart/form-data"> 
+    <form action="{% url 'register' %}" method="post" id="signin-form" class="mb-5" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="mb-3"> 
-            <div class="row g-3"> 
-                <div class="col-md-6">
-                    <input class="form-control inp fname" type="text" name="firstname" placeholder="First Name *" autocomplete="off" autofocus>
-                </div>
-                <div class="col-md-6">
-                    <input class="form-control inp lname" type="text" name="lastname" placeholder="Last Name *" autocomplete="off">
-                </div>
+      
+        <div class="mb-3">
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label for="firstname" class="form-label">First Name *</label>
+              {% if form.firstname.errors %}
+              <span class="star small" style="color: red;">{{ form.firstname.errors }}</span>
+              {% endif %}
+              <input type="text" class="form-control inp fname" id="firstname" name="firstname" placeholder="First Name *" value="{{ form.firstname.value }}">
             </div>
+      
+            <div class="col-md-6">
+              <label for="lastname" class="form-label">Last Name *</label>
+              {% if form.lastname.errors %}
+              <span class="star small" style="color: red;">{{ form.lastname.errors }}</span>
+              {% endif %}
+              <input type="text" class="form-control inp lname" id="lastname" name="lastname" placeholder="Last Name *" value="{{ form.lastname.value }}">
+            </div>
+          </div>
+        </div>
+      
+        <div class="mb-3">
+          <label for="username" class="form-label">Username *</label>
+          {% if form.username.errors %}
+          <span class="star small" style="color: red;">{{ form.username.errors }}</span>
+          {% endif %}
+          <input type="text" class="form-control inp usrname" id="username" name="username" placeholder="Username *" value="{{ form.username.value }}">
+        </div>
+      
+        <div class="mb-3">
+          <label for="email" class="form-label">Email Address *</label>
+          {% if form.email.errors %}
+          <span class="star small" style="color: red;">{{ form.email.errors }}</span>
+          {% endif %}
+          <input type="email" class="form-control inp email" id="email" name="email" placeholder="Email Address *" value="{{ form.email.value }}">
+        </div>
+      
+        <div class="mb-3">
+          <label for="password1" class="form-label">Password *</label>
+          {% if form.password1.errors %}
+          <span class="star small" style="color: red;">{{ form.password1.errors }}</span>
+          {% endif %}
+          <input type="password" class="form-control inp pswd" id="password1" name="password1" placeholder="Password *">
         </div>
         <div class="mb-3">
-            <input class="form-control inp usrname" type="text" name="username" placeholder="Username *" autocomplete="off">
-            <span class="star small">{{ message }}</span>
+        <label for="password2" class="form-label">Confirm Password *</label>
+            {% if form.password2.errors %}
+            <span class="star small" style="color: red;">{{ form.password2.errors }}</span>
+            {% endif %}
+            <input type="password" class="form-control inp cpswd" id="password2" name="password2" placeholder="Confirm Password *">
         </div>
-        <div class="mb-3">
-            <input class="form-control inp email" type="email" name="email" placeholder="Email Address *" autocomplete="off">
+      
+        <div class="d-grid gap-2">
+          <input class="btn btn-danger" type="submit" value="Sign Up" disabled>
         </div>
-        <div class="mb-3">
-            <input class="form-control inp pswd" type="password" name="password" placeholder="Password *" autocomplete="off">
-        </div>
-        <div class="mb-3">
-            <input class="form-control inp cpswd" type="password" name="confirmation" placeholder="Confirm Password *" autocomplete="off">
-        </div>
-
-        <div class="d-grid gap-2"> 
-            <input class="btn btn-danger" type="submit" value="Sign Up" disabled>
-        </div>
-    </form>
+      </form>
 
     <div class="text-center">
         Already have an account?&nbsp;&nbsp; <a href="{% url 'login' %}">Log in</a>
